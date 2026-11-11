@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+requests
+torch>=2.0
+einops
+huggingface_hub
+safetensors
+pandas
+numpy

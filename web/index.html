@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kronos Forecast</title>
+  <meta name="description" content="Next-hours candlestick forecasts for ten major coins, made by the open-source Kronos model.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A0E1F'/%3E%3Cpath d='M9 22V12M16 24V8M23 20v-9' stroke='%239B8CFF' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">Kronos forecast</div>
+      <div class="status" id="status"><i></i><span>Connecting to Binance</span></div>
+    </header>
+
+    <nav class="coins" id="coins" aria-label="Choose a coin"></nav>
+
+    <details class="settings" id="settings">
+      <summary>Forecast settings</summary>
+      <form id="settingsForm">
+        <label>Model
+          <select name="model">
+            <option value="small">Small (fast)</option>
+            <option value="base">Base (slower, larger)</option>
+          </select>
+        </label>
+        <label>Hours ahead
+          <select name="hours">
+            <option>6</option><option>12</option><option>24</option><option>36</option><option>48</option>
+          </select>
+        </label>
+        <label>Simulated futures <output id="pathsOut"></output>
+          <input type="range" name="paths" min="4" max="16" step="1">
+        </label>
+        <label>Variety <output id="varietyOut"></output>
+          <input type="range" name="variety" min="0.5" max="1.3" step="0.1">
+        </label>
+        <button type="submit" class="btn">Apply settings</button>
+      </form>
+      <p class="hint">More futures give a steadier average but take longer. Variety sets how much the simulated futures differ from each other. The Base model downloads about 400 MB the first time you use it.</p>
+    </details>
+
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Views"></nav>
+    <main id="view" aria-live="polite"></main>
+
+    <footer class="note">
+      Times are shown in your local time. Kronos reads past price and volume only. It knows nothing about news, and its futures are random samples,
+      so treat any forecast as one informed guess. Not financial advice. Nothing here connects to an exchange or places a trade.
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
